@@ -1,6 +1,12 @@
 "use client";
 
 import { FaqGenerator } from "@/components/FaqGenerator";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faHandshake,
+  faLifeRing,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   return (
@@ -31,20 +37,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
               <div className="group p-6 backdrop-blur-lg bg-white/10 rounded-xl border border-white/20 hover:border-white/30 transition-all duration-300 hover:transform hover:scale-105">
                 <div className="h-12 w-12 rounded-lg bg-primary-500/20 text-primary-300 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                  <FontAwesomeIcon icon={faClock} className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-primary-200">
                   Save Time
@@ -56,20 +49,7 @@ export default function Home() {
 
               <div className="group p-6 backdrop-blur-lg bg-white/10 rounded-xl border border-white/20 hover:border-white/30 transition-all duration-300 hover:transform hover:scale-105">
                 <div className="h-12 w-12 rounded-lg bg-secondary-500/20 text-secondary-300 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
-                    />
-                  </svg>
+                  <FontAwesomeIcon icon={faHandshake} className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-secondary-200">
                   Boost SEO
@@ -81,20 +61,7 @@ export default function Home() {
 
               <div className="group p-6 backdrop-blur-lg bg-white/10 rounded-xl border border-white/20 hover:border-white/30 transition-all duration-300 hover:transform hover:scale-105">
                 <div className="h-12 w-12 rounded-lg bg-primary-500/20 text-primary-300 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
-                    />
-                  </svg>
+                  <FontAwesomeIcon icon={faLifeRing} className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-primary-200">
                   Reduce Support Load
