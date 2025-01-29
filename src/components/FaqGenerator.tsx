@@ -25,12 +25,54 @@ export function FaqGenerator() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [generatedFaq, setGeneratedFaq] = useState<string | null>(null);
-  const [formData, setFormData] = useState<FormData | null>(null);
+  const [formData, setFormData] = useState<FormData | null>(() => {
+    // Only access localStorage in browser environment
+    if (typeof window === "undefined") return null;
+
+    // Try to load saved form data from localStorage
+    const saved = localStorage.getItem("savedFormData");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        localStorage.removeItem("savedFormData"); // Clear after loading
+        return parsed;
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  });
+
+  // Populate form fields with saved data when component mounts
+  React.useEffect(() => {
+    if (formData) {
+      const descriptionEl = document.getElementById(
+        "description"
+      ) as HTMLTextAreaElement;
+      const audienceEl = document.getElementById(
+        "audience"
+      ) as HTMLInputElement;
+      const painPointsEl = document.getElementById(
+        "painPoints"
+      ) as HTMLInputElement;
+      const toneEl = document.getElementById("tone") as HTMLSelectElement;
+
+      if (descriptionEl) descriptionEl.value = formData.description;
+      if (audienceEl) audienceEl.value = formData.audience;
+      if (painPointsEl) painPointsEl.value = formData.painPoints;
+      if (toneEl) toneEl.value = formData.tone;
+    }
+  }, [formData]);
 
   const handlePayment = async (data: FormData) => {
     try {
       setIsLoading(true);
       setError(null);
+
+      // Save form data to localStorage before redirect
+      if (typeof window !== "undefined") {
+        localStorage.setItem("savedFormData", JSON.stringify(data));
+      }
 
       // Create Stripe Checkout session
       const response = await fetch("/api/create-checkout-session", {
@@ -41,9 +83,6 @@ export function FaqGenerator() {
       });
 
       const { sessionId } = await response.json();
-
-      // Store form data temporarily
-      setFormData(data);
 
       // Redirect to Stripe Checkout
       const stripe = await stripePromise;
